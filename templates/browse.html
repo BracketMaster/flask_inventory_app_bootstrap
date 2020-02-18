@@ -1,0 +1,37 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "bootstrap/fixes.html" as fixes %}
+{% import "bootstrap/utils.html" as util %}
+
+
+{% block navbar %}
+{{nav.mynavbar.render()}}
+{% endblock %}
+
+{% block content %}
+{{util.flashed_messages(dismissible=True)}}
+<div class="container pt-3">
+  <h1>{{ title }}</h1>
+  <div class="row">
+  <div class="col-sm-2">
+    {{ wtf.quick_form(apply_filter, form_type='inline', button_map={'apply_filter': 'primary'}) }}
+  </div>
+  <div class="col-sm-2">
+    {{ wtf.quick_form(clear_filter, form_type='inline', button_map={'clear_filter': 'danger'}) }}
+  </div>
+  </div>
+<div class="table-responsive">
+{{ table|safe }}
+</div>
+
+</div>
+
+
+
+
+{% endblock %}
+
+{% block head %}
+{{super()}}
+{{fixes.ie8()}}
+{% endblock %}

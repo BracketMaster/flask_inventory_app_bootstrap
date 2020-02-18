@@ -1,0 +1,32 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "bootstrap/fixes.html" as fixes %}
+{% import "bootstrap/utils.html" as util %}
+
+
+{% block navbar %}
+{{nav.mynavbar.render()}}
+{% endblock %}
+
+{% block content %}
+{{util.flashed_messages(dismissible=True)}}
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+    <div class="w-75 p-3">
+    <h1>Hi {{ current_user }}</h1>
+
+    <h3>Add your games to the inventory.</h3>
+
+    {{ wtf.quick_form(form, button_map={'submit_button': 'primary'}) }}
+    </div>
+  <div class="col-sm-4"></div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block head %}
+{{super()}}
+{{fixes.ie8()}}
+{% endblock %}
